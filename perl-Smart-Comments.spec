@@ -4,21 +4,30 @@
 #
 Name     : perl-Smart-Comments
 Version  : 1.06
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libs/libsmart-comments-perl/libsmart-comments-perl_1.06-1.debian.tar.xz
 Summary  : 'Comments that do more than just sit there'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Smart-Comments-license
-Requires: perl-Smart-Comments-man
+Requires: perl-Smart-Comments-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 Smart::Comments
 Smart comments provide an easy way to insert debugging and tracking code
 into a program. They can report the value of a variable, track the
 progress of a loop, and verify that particular assertions are true.
+
+%package dev
+Summary: dev components for the perl-Smart-Comments package.
+Group: Development
+Provides: perl-Smart-Comments-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Smart-Comments package.
+
 
 %package license
 Summary: license components for the perl-Smart-Comments package.
@@ -28,19 +37,11 @@ Group: Default
 license components for the perl-Smart-Comments package.
 
 
-%package man
-Summary: man components for the perl-Smart-Comments package.
-Group: Default
-
-%description man
-man components for the perl-Smart-Comments package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Smart-Comments-1.06
-mkdir -p %{_topdir}/BUILD/Smart-Comments-1.06/deblicense/
+cd ..
+%setup -q -T -D -n Smart-Comments-1.06 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Smart-Comments-1.06/deblicense/
 
 %build
@@ -65,12 +66,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Smart-Comments
-cp LICENSE %{buildroot}/usr/share/doc/perl-Smart-Comments/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Smart-Comments
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Smart-Comments/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -79,12 +80,12 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Smart/Comments.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Smart/Comments.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Smart-Comments/LICENSE
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Smart::Comments.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Smart-Comments/LICENSE
