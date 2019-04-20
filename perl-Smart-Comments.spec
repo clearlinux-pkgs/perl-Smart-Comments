@@ -4,7 +4,7 @@
 #
 Name     : perl-Smart-Comments
 Version  : 1.06
-Release  : 8
+Release  : 9
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libs/libsmart-comments-perl/libsmart-comments-perl_1.06-1.debian.tar.xz
