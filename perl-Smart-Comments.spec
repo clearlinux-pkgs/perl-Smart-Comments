@@ -4,7 +4,7 @@
 #
 Name     : perl-Smart-Comments
 Version  : 1.06
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libs/libsmart-comments-perl/libsmart-comments-perl_1.06-1.debian.tar.xz
@@ -80,7 +80,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Smart-Comments
 cp %{_builddir}/Smart-Comments-1.06/LICENSE %{buildroot}/usr/share/package-licenses/perl-Smart-Comments/c930771eee6b5e5a6dbeff04a7820d21f473e079
-cp %{_builddir}/Smart-Comments-1.06/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Smart-Comments/d72f5c47e19037fb2bc771411fad0f6865ff8a67
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Smart-Comments/d72f5c47e19037fb2bc771411fad0f6865ff8a67
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -105,4 +105,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Smart/Comments.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Smart/Comments.pm
