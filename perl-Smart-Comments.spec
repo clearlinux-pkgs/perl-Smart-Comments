@@ -4,7 +4,7 @@
 #
 Name     : perl-Smart-Comments
 Version  : 1.06
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/N/NE/NEILB/Smart-Comments-1.06.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libs/libsmart-comments-perl/libsmart-comments-perl_1.06-1.debian.tar.xz
@@ -105,4 +105,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Smart/Comments.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Smart/Comments.pm
